@@ -12,10 +12,27 @@ if("geolocation" in navigator) {
     var marker = new google.maps.Marker({
         position: latlng,
         map: map
+        
     });
+
+    let contentString = '<div id="content"><h2 id="firstHeading" class="firstHeading">Custom info window</h2><p>This is a cool custom info window.</p></div>';
+
+    let infowindow = new google.maps.InfoWindow({
+        content: contentString
     });
-} else {
-    var para = document.createElement('p');
-    para.textContent = 'Argh, no geolocation!';
-    document.body.appendChild(para);
-}
+
+    marker.addListener('click', function() {
+        infowindow.open(map, marker);
+    });
+
+    });
+
+    } else {
+        var para = document.createElement('p');
+        para.textContent = 'Argh, no geolocation!';
+        document.body.appendChild(para);
+    }
+
+    var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
